@@ -1,0 +1,37 @@
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+.monaco-editor,
+.monaco-editor .margin,
+.monaco-editor .monaco-editor-background {
+  background-color: #ffffff !important;
+}
+
+/* Protect KaTeX from Tailwind prose style overrides */
+.prose .katex-display,
+.prose .katex-display > .katex {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.prose .katex,
+.prose .katex * {
+  font-size: inherit;
+  line-height: inherit;
+}
