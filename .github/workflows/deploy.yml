@@ -31,3 +31,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+      
+      - name: Output Deployment URL
+        run: |
+          echo "=========================================================="
+          echo "🚀 部署成功！你的网站访问链接为："
+          echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo "=========================================================="
