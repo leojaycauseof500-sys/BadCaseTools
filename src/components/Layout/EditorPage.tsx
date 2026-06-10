@@ -7,7 +7,7 @@ import { useDebouncedCallback } from '../../hooks/useDebounce';
 
 const STORAGE_KEY = 'badcase-md-content';
 
-const DEFAULT_CONTENT = `# Hello, BadCase Tools!
+const DEFAULT_CONTENT = `# 你好，BadCase Tools！
 
 欢迎使用 **Markdown + LaTeX 编辑器**。
 
@@ -65,6 +65,12 @@ export function EditorPage() {
     editorRef.current?.insertText(latex);
   }, []);
 
+  const handleReplaceAll = useCallback(
+    (find: string, replaceText: string) =>
+      editorRef.current?.replaceAll(find, replaceText) ?? false,
+    [],
+  );
+
   return (
     <div className="h-full flex flex-col bg-surface-secondary">
       {/* 顶部工具栏 */}
@@ -72,13 +78,13 @@ export function EditorPage() {
         <h1 className="text-sm font-medium text-gray-600 tracking-wide">
           BadCase Tools
         </h1>
-        <span className="ml-2 text-xs text-gray-400">Markdown &amp; LaTeX Editor</span>
+        <span className="ml-2 text-xs text-gray-400">Markdown 与 LaTeX 编辑器</span>
       </header>
 
       {/* 主编辑区域 */}
       <div className="flex-1 flex overflow-hidden">
         {/* 工具箱侧边栏 */}
-        <Toolbox onInsert={handleInsert} />
+        <Toolbox onInsert={handleInsert} onReplaceAll={handleReplaceAll} />
 
         {/* 左侧编辑器 */}
         <div className="flex-1 border-r border-border min-w-0">

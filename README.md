@@ -1,52 +1,54 @@
 # BadCase Tools
 
-A static Markdown and LaTeX editor with dual-pane real-time preview. Built for GitHub Pages deployment.
+一个纯静态的 Markdown 与 LaTeX 编辑器，支持双栏实时预览，专为 GitHub Pages 部署设计。
 
-## Features
+## 功能特性
 
-- Left-right split pane: Markdown source on the left, rendered preview on the right
-- LaTeX math rendering via KaTeX (supports `$...$`, `$$...$$`, `\(...\)`, and `\[...\]`)
-- Syntax highlighting powered by Monaco Editor
-- Auto-save to browser localStorage
-- Debounced rendering for smooth editing experience
-- Pure client-side -- no backend required
+- 左写右览的分栏布局：左侧 Markdown 源码编辑，右侧实时渲染预览
+- LaTeX 数学公式渲染（基于 KaTeX，支持 `$...$`、`$$...$$`、`\(...\)` 和 `\[...\]` 分隔符）
+- LaTeX 命令自动补全（输入 `\` 触发，含 180+ 条常用命令）
+- Monaco 编辑器提供语法高亮
+- 浏览器 localStorage 自动保存，刷新不丢失
+- 渲染防抖（150ms），编辑体验流畅
+- 左侧工具箱：竖式计算生成器 / 矩阵可视化生成器
+- 纯客户端运行，无需后端
 
-## Tech Stack
+## 技术栈
 
-| Layer | Library |
-|-------|---------|
-| Build | Vite |
-| UI Framework | React 18 (TypeScript) |
-| Styling | Tailwind CSS + @tailwindcss/typography |
-| Editor | Monaco Editor (@monaco-editor/react) |
-| Markdown | markdown-it |
-| LaTeX | KaTeX + markdown-it-katex |
+| 层次 | 技术选型 |
+|------|---------|
+| 构建 | Vite |
+| UI 框架 | React 18 (TypeScript) |
+| 样式 | Tailwind CSS + @tailwindcss/typography |
+| 编辑器 | Monaco Editor (@monaco-editor/react) |
+| Markdown 解析 | markdown-it |
+| LaTeX 渲染 | KaTeX + markdown-it-katex |
 
-## Getting Started
+## 本地开发
 
 ```bash
-# Install dependencies
+# 安装依赖
 npm install
 
-# Start dev server
+# 启动开发服务器
 npm run dev
 
-# Build for production
+# 生产构建
 npm run build
 
-# Preview production build locally
+# 本地预览生产构建
 npm run preview
 ```
 
-The dev server runs at `http://localhost:5173` by default.
+开发服务器默认运行在 `http://localhost:5173`。
 
-## Deployment
+## 部署
 
-This project is designed to deploy to GitHub Pages via GitHub Actions. On every push to the `main` branch, the workflow:
+本项目通过 GitHub Actions 自动部署到 GitHub Pages。每次推送到 `main` 分支时，工作流会自动执行：
 
-1. Checks out the repository
-2. Installs dependencies
-3. Runs `npm run build`
-4. Deploys the `dist/` directory to the `gh-pages` branch
+1. 检出代码
+2. 安装依赖
+3. 执行 `npm run build`
+4. 将 `dist/` 目录部署到 `gh-pages` 分支
 
-Make sure GitHub Pages is enabled in your repository settings and set to deploy from the `gh-pages` branch.
+请确保在仓库 Settings > Pages 中启用 GitHub Pages，并将部署源设置为 `gh-pages` 分支。

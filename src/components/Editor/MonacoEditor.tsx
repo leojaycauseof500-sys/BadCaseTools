@@ -6,6 +6,7 @@ import { LATEX_COMPLETIONS } from '../../utils/latexCompletions';
 export interface MonacoEditorHandle {
   insertText: (text: string) => void;
   getSelectedText: () => string;
+  replaceAll: (find: string, replaceText: string) => boolean;
 }
 
 interface MonacoEditorProps {
@@ -13,7 +14,7 @@ interface MonacoEditorProps {
   onChange: (value: string) => void;
 }
 
-let completionRegistered = false;
+let configDone = false;
 
 export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
   function MonacoEditor({ value, onChange }, ref) {
@@ -23,8 +24,10 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
       editorRef.current = editor;
       editor.focus();
 
-      if (!completionRegistered) {
-        completionRegistered = true;
+      if (!configDone) {
+        configDone = true;
+
+        // -- LaTeX 补全 --
         monaco.languages.registerCompletionItemProvider('markdown', {
           triggerCharacters: ['\\'],
           provideCompletionItems: (model, position) => {
@@ -35,13 +38,13 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
               endColumn: position.column,
             });
 
-            const match = textUntilPosition.match(/\\([a-zA-Z]*)$/);
-            if (!match) return { suggestions: [] };
+            const lastBackslash = textUntilPosition.lastIndexOf('\\');
+            if (lastBackslash === -1) return { suggestions: [] };
 
             const range = {
               startLineNumber: position.lineNumber,
               endLineNumber: position.lineNumber,
-              startColumn: position.column - match[0].length,
+              startColumn: lastBackslash + 1,
               endColumn: position.column,
             };
 
@@ -67,12 +70,7 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
         if (!ed) return;
         const selection = ed.getSelection();
         if (!selection) return;
-        ed.executeEdits('toolbox', [
-          {
-            range: selection,
-            text,
-          },
-        ]);
+        ed.executeEdits('toolbox', [{ range: selection, text }]);
         ed.focus();
       },
       getSelectedText: () => {
@@ -81,6 +79,23 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
         const selection = ed.getSelection();
         if (!selection) return '';
         return ed.getModel()?.getValueInRange(selection) ?? '';
+      },
+      replaceAll: (find: string, replaceText: string) => {
+        const ed = editorRef.current;
+        if (!ed) return false;
+        const model = ed.getModel();
+        if (!model) return false;
+        try {
+          const regex = new RegExp(find, 'gm');
+          const content = model.getValue();
+          const newContent = content.replace(regex, replaceText);
+          ed.executeEdits('replace-all', [
+            { range: model.getFullModelRange(), text: newContent },
+          ]);
+          return true;
+        } catch {
+          return false;
+        }
       },
     }), []);
 
@@ -98,7 +113,8 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
             lineNumbers: 'on',
             wordWrap: 'on',
             fontSize: 14,
-            fontFamily: '"Google Sans Mono", "Fira Code", Menlo, Monaco, monospace',
+            fontFamily:
+              '"Google Sans Mono", "Fira Code", Menlo, Monaco, monospace',
             lineHeight: 22,
             padding: { top: 16, bottom: 16 },
             scrollBeyondLastLine: false,
@@ -113,6 +129,8 @@ export const MonacoEditor = forwardRef<MonacoEditorHandle, MonacoEditorProps>(
             guides: { indentation: false },
             suggestOnTriggerCharacters: true,
             quickSuggestions: true,
+            autoClosingBrackets: 'always',
+            autoClosingQuotes: 'always',
           }}
         />
       </div>

@@ -5,6 +5,10 @@ export interface LatexCompletion {
 }
 
 export const LATEX_COMPLETIONS: LatexCompletion[] = [
+  // -- 公式括号对 --
+  { label: '\\(  \\)', insertText: '\\(${0}\\)', detail: '行内公式' },
+  { label: '\\[  \\]', insertText: '\\[${0}\\]', detail: '独立公式' },
+
   // -- Greek lowercase --
   { label: '\\alpha', insertText: '\\alpha' },
   { label: '\\beta', insertText: '\\beta' },
@@ -49,19 +53,19 @@ export const LATEX_COMPLETIONS: LatexCompletion[] = [
   { label: '\\Omega', insertText: '\\Omega' },
 
   // -- Fractions and roots --
-  { label: '\\frac', insertText: '\\frac{${1:num}}{${2:den}}', detail: 'Fraction' },
-  { label: '\\sqrt', insertText: '\\sqrt{${1:x}}', detail: 'Square root' },
-  { label: '\\sqrt[n]', insertText: '\\sqrt[${1:n}]{${2:x}}', detail: 'n-th root' },
-  { label: '\\binom', insertText: '\\binom{${1:n}}{${2:k}}', detail: 'Binomial coefficient' },
+  { label: '\\frac', insertText: '\\frac{${1:num}}{${2:den}}', detail: '分数' },
+  { label: '\\sqrt', insertText: '\\sqrt{${1:x}}', detail: '平方根' },
+  { label: '\\sqrt[n]', insertText: '\\sqrt[${1:n}]{${2:x}}', detail: 'n 次方根' },
+  { label: '\\binom', insertText: '\\binom{${1:n}}{${2:k}}', detail: '二项式系数' },
 
   // -- Sums, integrals, products --
-  { label: '\\sum', insertText: '\\sum_{${1:i}=${2:0}}^{${3:n}}', detail: 'Sum' },
-  { label: '\\int', insertText: '\\int_{${1:0}}^{${2:\\infty}}', detail: 'Definite integral' },
-  { label: '\\iint', insertText: '\\iint', detail: 'Double integral' },
-  { label: '\\iiint', insertText: '\\iiint', detail: 'Triple integral' },
-  { label: '\\oint', insertText: '\\oint', detail: 'Contour integral' },
-  { label: '\\prod', insertText: '\\prod_{${1:i}=${2:0}}^{${3:n}}', detail: 'Product' },
-  { label: '\\lim', insertText: '\\lim_{${1:x \\to \\infty}}', detail: 'Limit' },
+  { label: '\\sum', insertText: '\\sum_{${1:i}=${2:0}}^{${3:n}}', detail: '求和' },
+  { label: '\\int', insertText: '\\int_{${1:0}}^{${2:\\infty}}', detail: '定积分' },
+  { label: '\\iint', insertText: '\\iint', detail: '二重积分' },
+  { label: '\\iiint', insertText: '\\iiint', detail: '三重积分' },
+  { label: '\\oint', insertText: '\\oint', detail: '环路积分' },
+  { label: '\\prod', insertText: '\\prod_{${1:i}=${2:0}}^{${3:n}}', detail: '累乘' },
+  { label: '\\lim', insertText: '\\lim_{${1:x \\to \\infty}}', detail: '极限' },
 
   // -- Elementary functions --
   { label: '\\log', insertText: '\\log' },
@@ -85,12 +89,12 @@ export const LATEX_COMPLETIONS: LatexCompletion[] = [
   { label: '\\gcd', insertText: '\\gcd' },
 
   // -- Auto-sizing brackets --
-  { label: '\\left(', insertText: '\\left( ${1:x} \\right)', detail: 'Parentheses' },
-  { label: '\\left[', insertText: '\\left[ ${1:x} \\right]', detail: 'Brackets' },
-  { label: '\\left\\{', insertText: '\\left\\{ ${1:x} \\right\\}', detail: 'Braces' },
-  { label: '\\langle', insertText: '\\langle ${1:x} \\rangle', detail: 'Angle brackets' },
-  { label: '\\lvert', insertText: '\\lvert ${1:x} \\rvert', detail: 'Absolute value' },
-  { label: '\\lVert', insertText: '\\lVert ${1:x} \\rVert', detail: 'Norm' },
+  { label: '\\left(', insertText: '\\left( ${1:x} \\right)', detail: '括号' },
+  { label: '\\left[', insertText: '\\left[ ${1:x} \\right]', detail: '方括号' },
+  { label: '\\left\\{', insertText: '\\left\\{ ${1:x} \\right\\}', detail: '花括号' },
+  { label: '\\langle', insertText: '\\langle ${1:x} \\rangle', detail: '尖括号' },
+  { label: '\\lvert', insertText: '\\lvert ${1:x} \\rvert', detail: '绝对值' },
+  { label: '\\lVert', insertText: '\\lVert ${1:x} \\rVert', detail: '范数' },
 
   // -- Common symbols --
   { label: '\\infty', insertText: '\\infty' },
@@ -153,11 +157,11 @@ export const LATEX_COMPLETIONS: LatexCompletion[] = [
   { label: '\\cap', insertText: '\\cap' },
   { label: '\\cup', insertText: '\\cup' },
   { label: '\\setminus', insertText: '\\setminus' },
-  { label: '\\mathbb{R}', insertText: '\\mathbb{R}', detail: 'Real numbers' },
-  { label: '\\mathbb{N}', insertText: '\\mathbb{N}', detail: 'Natural numbers' },
-  { label: '\\mathbb{Z}', insertText: '\\mathbb{Z}', detail: 'Integers' },
-  { label: '\\mathbb{Q}', insertText: '\\mathbb{Q}', detail: 'Rationals' },
-  { label: '\\mathbb{C}', insertText: '\\mathbb{C}', detail: 'Complex numbers' },
+  { label: '\\mathbb{R}', insertText: '\\mathbb{R}', detail: '实数集' },
+  { label: '\\mathbb{N}', insertText: '\\mathbb{N}', detail: '自然数集' },
+  { label: '\\mathbb{Z}', insertText: '\\mathbb{Z}', detail: '整数集' },
+  { label: '\\mathbb{Q}', insertText: '\\mathbb{Q}', detail: '有理数集' },
+  { label: '\\mathbb{C}', insertText: '\\mathbb{C}', detail: '复数集' },
 
   // -- Arrows --
   { label: '\\rightarrow', insertText: '\\rightarrow' },
@@ -173,44 +177,44 @@ export const LATEX_COMPLETIONS: LatexCompletion[] = [
   { label: '\\longleftarrow', insertText: '\\longleftarrow' },
 
   // -- Accents --
-  { label: '\\hat', insertText: '\\hat{${1:x}}', detail: 'Hat' },
-  { label: '\\bar', insertText: '\\bar{${1:x}}', detail: 'Bar' },
-  { label: '\\vec', insertText: '\\vec{${1:x}}', detail: 'Vector' },
-  { label: '\\dot', insertText: '\\dot{${1:x}}', detail: 'Dot' },
-  { label: '\\ddot', insertText: '\\ddot{${1:x}}', detail: 'Double dot' },
-  { label: '\\tilde', insertText: '\\tilde{${1:x}}', detail: 'Tilde' },
-  { label: '\\widehat', insertText: '\\widehat{${1:x}}', detail: 'Wide hat' },
-  { label: '\\widetilde', insertText: '\\widetilde{${1:x}}', detail: 'Wide tilde' },
-  { label: '\\overline', insertText: '\\overline{${1:x}}', detail: 'Overline' },
-  { label: '\\underline', insertText: '\\underline{${1:x}}', detail: 'Underline' },
+  { label: '\\hat', insertText: '\\hat{${1:x}}', detail: '帽子符号' },
+  { label: '\\bar', insertText: '\\bar{${1:x}}', detail: '上划线' },
+  { label: '\\vec', insertText: '\\vec{${1:x}}', detail: '向量' },
+  { label: '\\dot', insertText: '\\dot{${1:x}}', detail: '单点' },
+  { label: '\\ddot', insertText: '\\ddot{${1:x}}', detail: '双点' },
+  { label: '\\tilde', insertText: '\\tilde{${1:x}}', detail: '波浪线' },
+  { label: '\\widehat', insertText: '\\widehat{${1:x}}', detail: '宽帽子' },
+  { label: '\\widetilde', insertText: '\\widetilde{${1:x}}', detail: '宽波浪线' },
+  { label: '\\overline', insertText: '\\overline{${1:x}}', detail: '上横线' },
+  { label: '\\underline', insertText: '\\underline{${1:x}}', detail: '下横线' },
 
   // -- Environments --
-  { label: '\\begin{pmatrix}', insertText: '\\begin{pmatrix}\n\t${1}\n\\end{pmatrix}', detail: 'Matrix (parentheses)' },
-  { label: '\\begin{bmatrix}', insertText: '\\begin{bmatrix}\n\t${1}\n\\end{bmatrix}', detail: 'Matrix (brackets)' },
-  { label: '\\begin{Bmatrix}', insertText: '\\begin{Bmatrix}\n\t${1}\n\\end{Bmatrix}', detail: 'Matrix (braces)' },
-  { label: '\\begin{vmatrix}', insertText: '\\begin{vmatrix}\n\t${1}\n\\end{vmatrix}', detail: 'Determinant' },
-  { label: '\\begin{cases}', insertText: '\\begin{cases}\n\t${1}\n\\end{cases}', detail: 'Cases' },
-  { label: '\\begin{aligned}', insertText: '\\begin{aligned}\n\t${1}\n\\end{aligned}', detail: 'Aligned equations' },
-  { label: '\\begin{array}', insertText: '\\begin{array}{${1:c}}\n\t${2}\n\\end{array}', detail: 'Custom array' },
-  { label: '\\begin{align}', insertText: '\\begin{align}\n\t${1}\n\\end{align}', detail: 'Align env' },
+  { label: '\\begin{pmatrix}', insertText: '\\begin{pmatrix}\n\t${1}\n\\end{pmatrix}', detail: '矩阵（圆括号）' },
+  { label: '\\begin{bmatrix}', insertText: '\\begin{bmatrix}\n\t${1}\n\\end{bmatrix}', detail: '矩阵（方括号）' },
+  { label: '\\begin{Bmatrix}', insertText: '\\begin{Bmatrix}\n\t${1}\n\\end{Bmatrix}', detail: '矩阵（花括号）' },
+  { label: '\\begin{vmatrix}', insertText: '\\begin{vmatrix}\n\t${1}\n\\end{vmatrix}', detail: '行列式' },
+  { label: '\\begin{cases}', insertText: '\\begin{cases}\n\t${1}\n\\end{cases}', detail: '分段函数' },
+  { label: '\\begin{aligned}', insertText: '\\begin{aligned}\n\t${1}\n\\end{aligned}', detail: '对齐公式' },
+  { label: '\\begin{array}', insertText: '\\begin{array}{${1:c}}\n\t${2}\n\\end{array}', detail: '自定义表格' },
+  { label: '\\begin{align}', insertText: '\\begin{align}\n\t${1}\n\\end{align}', detail: '对齐环境' },
 
   // -- Text formatting --
-  { label: '\\text', insertText: '\\text{${1:text}}', detail: 'Normal text in math' },
-  { label: '\\mathrm', insertText: '\\mathrm{${1:x}}', detail: 'Roman font' },
-  { label: '\\mathbf', insertText: '\\mathbf{${1:x}}', detail: 'Bold' },
-  { label: '\\mathit', insertText: '\\mathit{${1:x}}', detail: 'Italic' },
-  { label: '\\mathbb', insertText: '\\mathbb{${1:R}}', detail: 'Blackboard bold' },
-  { label: '\\mathcal', insertText: '\\mathcal{${1:X}}', detail: 'Calligraphic' },
-  { label: '\\mathfrak', insertText: '\\mathfrak{${1:X}}', detail: 'Fraktur' },
-  { label: '\\mathscr', insertText: '\\mathscr{${1:X}}', detail: 'Script' },
-  { label: '\\mathsf', insertText: '\\mathsf{${1:x}}', detail: 'Sans-serif' },
-  { label: '\\mathtt', insertText: '\\mathtt{${1:x}}', detail: 'Typewriter' },
+  { label: '\\text', insertText: '\\text{${1:text}}', detail: '数学模式中的普通文本' },
+  { label: '\\mathrm', insertText: '\\mathrm{${1:x}}', detail: '罗马体' },
+  { label: '\\mathbf', insertText: '\\mathbf{${1:x}}', detail: '粗体' },
+  { label: '\\mathit', insertText: '\\mathit{${1:x}}', detail: '斜体' },
+  { label: '\\mathbb', insertText: '\\mathbb{${1:R}}', detail: '黑板粗体' },
+  { label: '\\mathcal', insertText: '\\mathcal{${1:X}}', detail: '花体' },
+  { label: '\\mathfrak', insertText: '\\mathfrak{${1:X}}', detail: '哥特体' },
+  { label: '\\mathscr', insertText: '\\mathscr{${1:X}}', detail: '手写体' },
+  { label: '\\mathsf', insertText: '\\mathsf{${1:x}}', detail: '无衬线体' },
+  { label: '\\mathtt', insertText: '\\mathtt{${1:x}}', detail: '等宽字体' },
 
   // -- Spaces --
-  { label: '\\;', insertText: '\\;', detail: 'Thick space' },
-  { label: '\\:', insertText: '\\:', detail: 'Medium space' },
-  { label: '\\,', insertText: '\\,', detail: 'Thin space' },
-  { label: '\\!', insertText: '\\!', detail: 'Negative thin space' },
-  { label: '\\quad', insertText: '\\quad', detail: '1em space' },
-  { label: '\\qquad', insertText: '\\qquad', detail: '2em space' },
+  { label: '\\;', insertText: '\\;', detail: '厚间距' },
+  { label: '\\:', insertText: '\\:', detail: '中等间距' },
+  { label: '\\,', insertText: '\\,', detail: '薄间距' },
+  { label: '\\!', insertText: '\\!', detail: '负薄间距' },
+  { label: '\\quad', insertText: '\\quad', detail: '1em 间距' },
+  { label: '\\qquad', insertText: '\\qquad', detail: '2em 间距' },
 ];

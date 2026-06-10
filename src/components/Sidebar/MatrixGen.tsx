@@ -66,20 +66,20 @@ export function MatrixGen({ onInsert }: MatrixGenProps) {
 
   const handleInsert = useCallback(() => {
     if (preview) {
-      onInsert(`\n$$\n${preview}\n$$\n`);
+      onInsert(`\n\\[\n${preview}\n\\]\n`);
     }
   }, [preview, onInsert]);
 
   return (
     <div className="space-y-3">
       <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-        Matrix Generator
+        矩阵生成器
       </h3>
 
       {/* Dimensions */}
       <div className="flex items-center gap-3">
         <label className="flex items-center gap-1 text-xs text-gray-600">
-          Rows
+          行
           <input
             type="number"
             min={1}
@@ -93,7 +93,7 @@ export function MatrixGen({ onInsert }: MatrixGenProps) {
           />
         </label>
         <label className="flex items-center gap-1 text-xs text-gray-600">
-          Cols
+          列
           <input
             type="number"
             min={1}
@@ -144,7 +144,7 @@ export function MatrixGen({ onInsert }: MatrixGenProps) {
           onClick={handleGenerate}
           className="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
         >
-          Generate
+          生成
         </button>
       </div>
 
@@ -157,7 +157,7 @@ export function MatrixGen({ onInsert }: MatrixGenProps) {
             onClick={handleInsert}
             className="w-full px-3 py-1 text-xs bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
           >
-            Insert at Cursor
+            插入到光标处
           </button>
         </>
       )}
