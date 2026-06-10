@@ -5,13 +5,12 @@ on:
     branches: [main, dev-math]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -46,7 +45,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           destination_dir: ${{ github.ref == 'refs/heads/main' && '.' || 'dev' }}
-          keep_files: true
 
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v3
