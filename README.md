@@ -44,11 +44,16 @@ npm run preview
 
 ## 部署
 
-本项目通过 GitHub Actions 自动部署到 GitHub Pages。每次推送到 `main` 分支时，工作流会自动执行：
+本项目通过 GitHub Actions 自动部署到 GitHub Pages。
+
+- **`main` 分支** → 部署到站点根目录 (`/BadCaseTools/`)
+- **`dev-math` 分支** → 部署到 `/BadCaseTools/dev/` 子目录
+
+推送代码后工作流自动执行：
 
 1. 检出代码
 2. 安装依赖
-3. 执行 `npm run build`
-4. 将 `dist/` 目录部署到 `gh-pages` 分支
+3. 执行 `npm run build`（自动设置正确的 `VITE_BASE`）
+4. 将 `dist/` 目录部署到 `gh-pages` 分支对应目录
 
 请确保在仓库 Settings > Pages 中启用 GitHub Pages，并将部署源设置为 `gh-pages` 分支。
