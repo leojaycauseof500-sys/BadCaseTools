@@ -10,11 +10,9 @@ export async function getPyodide(): Promise<PyodideInterface> {
   initPromise = (async () => {
     const { loadPyodide } = await import('pyodide');
     pyodide = await loadPyodide({
-      indexURL: 'https://cdn.jsdelivr.net/npm/pyodide@314.0.0/',
+      packageBaseUrl: 'https://cdn.jsdelivr.net/pyodide/v314.0.0/full/',
     });
-    await pyodide.loadPackage(['micropip']);
-    const micropip = pyodide.pyimport('micropip');
-    await micropip.install('sympy');
+    await pyodide.loadPackage(['sympy']);
 
     // -- 常驻 Python 环境定义 --
     pyodide.runPython(`
