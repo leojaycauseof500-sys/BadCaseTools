@@ -6,4 +6,7 @@ export default defineConfig(({ mode }) => ({
   base:
     process.env.VITE_BASE ??
     (mode === 'production' ? '/BadCaseTools/' : '/'),
+  optimizeDeps: {
+    exclude: ['pyodide'],
+  },
 }));
