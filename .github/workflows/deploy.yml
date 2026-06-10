@@ -11,6 +11,7 @@ permissions:
 
 concurrency:
   group: "pages"
+  cancel-in-progress: true  
 
 jobs:
   build-and-deploy:
@@ -33,23 +34,16 @@ jobs:
 
       - name: Build
         run: npm run build
-        # env:
-        #   VITE_BASE: ${{ github.ref == 'refs/heads/main' && '/BadCaseTools/' || '/BadCaseTools/dev/' }}
+        env:
+          VITE_BASE: ${{ github.ref == 'refs/heads/main' && '/BadCaseTools/' || '/BadCaseTools/dev/' }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          destination_dir: ${{ github.ref == 'refs/heads/main' && '.' || 'dev' }}
-
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: './dist'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
