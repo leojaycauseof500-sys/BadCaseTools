@@ -123,6 +123,8 @@ export function SavedReplace({ onReplace }: SavedReplaceProps) {
               placeholder="正则查找"
               className="flex-1 px-1 py-0.5 text-xs border border-gray-300 rounded font-mono"
             />
+          </div>
+          <div className="flex gap-1">
             <input
               type="text"
               value={rule.replaceText}
